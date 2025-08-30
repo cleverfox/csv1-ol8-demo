@@ -30,3 +30,7 @@ path = "src/bin/tcp_robust_test.rs"
 [[bin]]
 name = "tui_diagnostic"
 path = "src/bin/tui_diagnostic.rs"
+
+[[bin]]
+name = "tcp_server"
+path = "src/bin/tcp_server.rs"
