@@ -1,0 +1,26 @@
+[package]
+name = "serialtest"
+edition = "2021"
+
+[dependencies]
+serialport = "4.7.3"
+clap = { version = "4.0", features = ["derive"] }
+tokio = { version = "1.0", features = ["full"] }
+anyhow = "1.0"
+ctrlc = "3.0"
+
+[[bin]]
+name = "cdc"
+path = "src/bin/cdc.rs"
+
+[[bin]]
+name = "unified_test"
+path = "src/bin/unified_test.rs"
+
+[[bin]]
+name = "tcp_server_example"
+path = "src/bin/tcp_server_example.rs"
+
+[[bin]]
+name = "tcp_robust_test"
+path = "src/bin/tcp_robust_test.rs"
