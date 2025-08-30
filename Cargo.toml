@@ -8,6 +8,8 @@ clap = { version = "4.0", features = ["derive"] }
 tokio = { version = "1.0", features = ["full"] }
 anyhow = "1.0"
 ctrlc = "3.0"
+ratatui = "0.24"
+crossterm = "0.27"
 
 [[bin]]
 name = "cdc"
@@ -24,3 +26,7 @@ path = "src/bin/tcp_server_example.rs"
 [[bin]]
 name = "tcp_robust_test"
 path = "src/bin/tcp_robust_test.rs"
+
+[[bin]]
+name = "tui_diagnostic"
+path = "src/bin/tui_diagnostic.rs"

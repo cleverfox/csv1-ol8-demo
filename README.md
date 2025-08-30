@@ -47,6 +47,7 @@ cargo build --release
 - `unified_test`: Main test program with auto-transport detection
 - `tcp_robust_test`: TCP-optimized test with advanced error handling
 - `tcp_server_example`: TCP server simulator for testing
+- `tui_diagnostic`: Interactive TUI for real-time DAC control
 
 ### Usage Examples
 
@@ -75,6 +76,26 @@ cargo run --bin tcp_robust_test -- 192.168.56.102:2012 \
   --response-commands "0xfd,0xfe" --verbose
 ```
 
+#### TUI Diagnostic Tool
+```bash
+# Interactive TUI control
+cargo run --bin tui_diagnostic -- /dev/ttyACM0
+cargo run --bin tui_diagnostic -- 192.168.56.102:2012 --step 512
+
+# Fine control with small steps
+cargo run --bin tui_diagnostic -- COM5 --step 16 --keepalive-interval 10
+```
+
+### TUI Controls
+- **← →**: Select DAC channel (0-7)
+- **↑ ↓**: Adjust DAC value by step (clamped at 0-65535)
+- **SPACE**: Large step (+8192) with wraparound (after 65535 → 0)
+- **0-9**: Set table offset 0-9
+- **ZXCVBNM,**: Toggle GPIO pins 0-7 (Z=GPIO0, X=GPIO1, etc.)
+- **ESC/q**: Quit application
+- **Status Display**: Shows last command and device response (e.g., "2 bytes: [00, 00]")
+```
+
 ### Command Line Options
 
 - `--rate <Hz>`: Test frequency (default: 10 Hz)
@@ -83,6 +104,10 @@ cargo run --bin tcp_robust_test -- 192.168.56.102:2012 \
 - `--write-timeout <ms>`: Write timeout in milliseconds
 - `--no-responses`: Skip reading responses (fire-and-forget)
 - `--duration <sec>`: Test duration in seconds
+
+#### TUI Diagnostic Options
+- `--step <value>`: DAC value step size for up/down keys (default: 256)
+- `--keepalive-interval <sec>`: Keepalive interval in seconds (default: 5)
 
 ## Python Implementation
 
@@ -203,6 +228,7 @@ python CSv1-OL8-IRS422.py <target> --verbose
 - `python/CSv1-OL8-IRS422.py`: Python implementation
 - `UNIFIED_TEST.md`: Detailed Rust usage documentation
 - `IMPROVEMENTS.md`: Technical implementation details
+- `TUI_DIAGNOSTIC.md`: Interactive TUI tool documentation
 
 ## License
 

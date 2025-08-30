@@ -242,6 +242,9 @@ Examples:
     %(prog)s 192.168.1.100:8080
     %(prog)s 192.168.56.102:2012 --timeout 0.5
     %(prog)s [::1]:8080 --timeout 0.1
+
+  For interactive control, also try the Rust TUI tool:
+    cargo run --bin tui_diagnostic -- 192.168.56.102:2012
         """
     )
 
